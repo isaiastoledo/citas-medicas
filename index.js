@@ -1,9 +1,14 @@
 import express from 'express';
-import router from './routes/router.js';
-const app = express();
-const PORT = process.env.PORT || 3000;
+import { registerUser, getUsers } from './routes/routes.js';
 
-//Routes
-app.use('/', router);
+const app = express();
+const PORT = 3000;
+
+app.use(express.json());
+
+// Rutas
+app.post('/register', registerUser);
+app.get('/users', getUsers);
+
 
 app.listen(PORT, () => console.log(`Server running on port http://localhost:${PORT}`));
